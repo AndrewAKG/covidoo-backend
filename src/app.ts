@@ -1,5 +1,4 @@
 import compression from 'compression';
-import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
@@ -22,7 +21,7 @@ class App {
     constructor(routes: Routes[]) {
         this.app = express();
         this.env = NODE_ENV || 'development';
-        this.port = PORT || 3000;
+        this.port = PORT || 3001;
 
         this.connectToDatabase();
         this.initializeMiddlewares();
@@ -60,7 +59,6 @@ class App {
         this.app.use(compression());
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
-        this.app.use(cookieParser());
     }
 
     private initializeRoutes(routes: Routes[]) {

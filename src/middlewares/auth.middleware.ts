@@ -2,10 +2,9 @@ import { NextFunction, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 import { SECRET_KEY } from '@config';
 import { HttpException } from '@exceptions/HttpException';
-import { DataStoredInToken, RequestWithUser } from '@interfaces/auth.interface';
-import userModel from '@/models/user-data.model';
+import { DataStoredInToken, RequestWithUserId } from '@interfaces/auth.interface';
 
-const authMiddleware = async (req: RequestWithUser, res: Response, next: NextFunction) => {
+const authMiddleware = async (req: RequestWithUserId, res: Response, next: NextFunction) => {
     try {
         const Authorization =
             req.cookies['Authorization'] ||
@@ -18,14 +17,8 @@ const authMiddleware = async (req: RequestWithUser, res: Response, next: NextFun
                 secretKey
             )) as DataStoredInToken;
             const userId = verificationResponse._id;
-            const findUser = await userModel.findById(userId);
-
-            if (findUser) {
-                req.user = findUser;
-                next();
-            } else {
-                next(new HttpException(401, 'Wrong authentication token'));
-            }
+            req.userId = userId;
+            next();
         } else {
             next(new HttpException(404, 'Authentication token missing'));
         }

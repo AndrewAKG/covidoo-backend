@@ -8,8 +8,11 @@ export const {
     DB_HOST,
     DB_PORT,
     DB_DATABASE,
+    DB_CONNECTION_URL,
     SECRET_KEY,
     LOG_FORMAT,
     LOG_DIR,
-    ORIGIN
+    ORIGIN,
+    AUTH0_DOMAIN,
+    AUTH0_AUDIENCE
 } = process.env;

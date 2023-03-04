@@ -1,5 +1,13 @@
+export interface CreateUserDataRequest {
+    userId: string;
+    latitude: number;
+    longitude: number;
+    address: string;
+    temperature: number;
+}
+
 export interface UserData {
-    _id: string;
+    userId: string;
     latitude: number;
     longitude: number;
     address: string;

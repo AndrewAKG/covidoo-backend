@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { CreateUserDataDto } from '@/dtos/user-data.dto';
-import { UserData } from '@/interfaces/user-data.interface';
+import { UserData, CreateUserDataRequest } from '@/interfaces/user-data.interface';
 import UserDataService from '@/services/user-data.service';
+import { RequestWithUserId } from '@/interfaces/auth.interface';
 
 class UsersDataController {
     public userDataService = new UserDataService();
@@ -16,10 +16,14 @@ class UsersDataController {
         }
     };
 
-    public getUserHistoryById = async (req: Request, res: Response, next: NextFunction) => {
+    public getUserDataHistory = async (
+        req: RequestWithUserId,
+        res: Response,
+        next: NextFunction
+    ) => {
         try {
-            const userId: string = req.params.id;
-            const findUserHistory: UserData[] = await this.userDataService.findUserHistoryById(
+            const userId: string = req.userId;
+            const findUserHistory: UserData[] = await this.userDataService.getUserDataHistory(
                 userId
             );
 
@@ -29,9 +33,13 @@ class UsersDataController {
         }
     };
 
-    public createUserData = async (req: Request, res: Response, next: NextFunction) => {
+    public createUserData = async (req: RequestWithUserId, res: Response, next: NextFunction) => {
         try {
-            const userData: CreateUserDataDto = req.body;
+            const userData: CreateUserDataRequest = {
+                ...req.body,
+                userId: req.userId
+            };
+
             const createUserData: UserData = await this.userDataService.createUserData(userData);
 
             res.status(201).json({ data: createUserData });

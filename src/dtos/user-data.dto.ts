@@ -5,7 +5,7 @@ export class CreateUserDataDto {
     public latitude: number;
 
     @IsNumber()
-    public longitude: string;
+    public longitude: number;
 
     @IsString()
     public address: string;
