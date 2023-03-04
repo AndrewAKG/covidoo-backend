@@ -3,7 +3,7 @@ import UserDataController from '@/controllers/user-data.controller';
 import { CreateUserDataDto } from '@/dtos/user-data.dto';
 import { Routes } from '@interfaces/routes.interface';
 import validationMiddleware from '@middlewares/validation.middleware';
-import { addUserIdMiddleware, validateAccessToken } from '@/middlewares/auth0.middleware';
+import { addUserDetailsMiddleware, validateAccessToken } from '@/middlewares/auth0.middleware';
 
 class UsersDataRoute implements Routes {
     public path = '/users-data';
@@ -19,13 +19,13 @@ class UsersDataRoute implements Routes {
         this.router.get(
             `${this.path}/history`,
             validateAccessToken,
-            addUserIdMiddleware,
+            addUserDetailsMiddleware,
             this.userDataController.getUserDataHistory
         );
         this.router.post(
             `${this.path}`,
             validateAccessToken,
-            addUserIdMiddleware,
+            addUserDetailsMiddleware,
             validationMiddleware(CreateUserDataDto, 'body'),
             this.userDataController.createUserData
         );

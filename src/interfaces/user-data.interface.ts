@@ -1,5 +1,6 @@
 export interface CreateUserDataRequest {
     userId: string;
+    username: string;
     latitude: number;
     longitude: number;
     address: string;
@@ -8,6 +9,7 @@ export interface CreateUserDataRequest {
 
 export interface UserData {
     userId: string;
+    username: string;
     latitude: number;
     longitude: number;
     address: string;

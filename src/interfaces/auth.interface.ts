@@ -5,6 +5,7 @@ export interface RequestWithAuth extends Request {
     auth: AuthResult;
 }
 
-export interface RequestWithUserId extends RequestWithAuth {
+export interface RequestWithUserDetails extends RequestWithAuth {
     userId: string;
+    username: string;
 }

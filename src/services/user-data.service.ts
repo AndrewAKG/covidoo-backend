@@ -8,7 +8,34 @@ class UserDataService {
     public userData = userDataModel;
 
     public async findAllUsersData(): Promise<UserData[]> {
-        const usersData: UserData[] = await this.userData.find();
+        const usersData: UserData[] = await this.userData.aggregate([
+            {
+                $group: {
+                    _id: '$userId',
+                    latitude: { $last: '$latitude' },
+                    longitude: { $last: '$longitude' },
+                    temperature: { $last: '$temperature' },
+                    username: { $last: '$username' },
+                    timestamp: { $last: '$timestamp' }
+                }
+            },
+            {
+                $project: {
+                    userId: '$_id',
+                    latitude: '$latitude',
+                    longitude: '$longitude',
+                    temperature: '$temperature',
+                    username: '$username',
+                    timestamp: '$timestamp'
+                }
+            },
+            {
+                $sort: {
+                    timestamp: -1
+                }
+            }
+        ]);
+
         return usersData;
     }
 

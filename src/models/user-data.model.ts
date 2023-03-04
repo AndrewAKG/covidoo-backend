@@ -6,6 +6,10 @@ const userDataSchema: Schema = new Schema({
         type: String,
         required: true
     },
+    username: {
+        type: String,
+        required: true
+    },
     latitude: {
         type: Number,
         required: true

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { UserData, CreateUserDataRequest } from '@/interfaces/user-data.interface';
 import UserDataService from '@/services/user-data.service';
-import { RequestWithUserId } from '@/interfaces/auth.interface';
+import { RequestWithUserDetails } from '@/interfaces/auth.interface';
 
 class UsersDataController {
     public userDataService = new UserDataService();
@@ -17,7 +17,7 @@ class UsersDataController {
     };
 
     public getUserDataHistory = async (
-        req: RequestWithUserId,
+        req: RequestWithUserDetails,
         res: Response,
         next: NextFunction
     ) => {
@@ -33,11 +33,16 @@ class UsersDataController {
         }
     };
 
-    public createUserData = async (req: RequestWithUserId, res: Response, next: NextFunction) => {
+    public createUserData = async (
+        req: RequestWithUserDetails,
+        res: Response,
+        next: NextFunction
+    ) => {
         try {
             const userData: CreateUserDataRequest = {
                 ...req.body,
-                userId: req.userId
+                userId: req.userId,
+                username: req.username
             };
 
             const createUserData: UserData = await this.userDataService.createUserData(userData);
