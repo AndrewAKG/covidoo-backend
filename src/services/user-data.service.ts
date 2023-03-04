@@ -53,8 +53,7 @@ class UserDataService {
 
         const userDataWithTimestamp: UserData = {
             ...userData,
-            timestamp: moment().unix(),
-            date: moment().format('DD-MM-YYYY')
+            timestamp: moment().unix()
         };
 
         const createUserData: UserData = await this.userData.create(userDataWithTimestamp);

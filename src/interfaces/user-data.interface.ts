@@ -14,6 +14,5 @@ export interface UserData {
     longitude: number;
     address: string;
     temperature: number;
-    date: string;
     timestamp: number;
 }
