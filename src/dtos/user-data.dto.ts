@@ -7,8 +7,8 @@ export class CreateUserDataDto {
     @IsNumber()
     public longitude: number;
 
-    @IsString()
-    public address: string;
+    @IsNumber()
+    public oxygenLevel: number;
 
     @IsNumber()
     public temperature: number;

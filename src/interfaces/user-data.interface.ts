@@ -3,7 +3,7 @@ export interface CreateUserDataRequest {
     username: string;
     latitude: number;
     longitude: number;
-    address: string;
+    oxygenLevel: number;
     temperature: number;
 }
 
@@ -12,7 +12,7 @@ export interface UserData {
     username: string;
     latitude: number;
     longitude: number;
-    address: string;
+    oxygenLevel: number;
     temperature: number;
     timestamp: number;
 }

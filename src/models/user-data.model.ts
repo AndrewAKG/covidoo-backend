@@ -18,8 +18,8 @@ const userDataSchema: Schema = new Schema({
         type: Number,
         required: true
     },
-    address: {
-        type: String,
+    oxygenLevel: {
+        type: Number,
         required: true
     },
     temperature: {
