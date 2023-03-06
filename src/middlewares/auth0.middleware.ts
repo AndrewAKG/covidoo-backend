@@ -1,5 +1,5 @@
-import { AUTH0_AUDIENCE, AUTH0_DOMAIN } from '@/config';
-import { RequestWithUserDetails } from '@/interfaces/auth.interface';
+import { AUTH0_AUDIENCE, AUTH0_DOMAIN } from '@config';
+import { RequestWithUserDetails } from '@interfaces/auth.interface';
 import { NextFunction, Response } from 'express';
 import { auth } from 'express-oauth2-jwt-bearer';
 import { ManagementClient } from 'auth0';

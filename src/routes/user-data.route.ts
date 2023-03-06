@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import UserDataController from '@/controllers/user-data.controller';
-import { CreateUserDataDto } from '@/dtos/user-data.dto';
+import UserDataController from '@controllers/user-data.controller';
+import { CreateUserDataDto } from '@dtos/user-data.dto';
 import { Routes } from '@interfaces/routes.interface';
 import validationMiddleware from '@middlewares/validation.middleware';
-import { addUserDetailsMiddleware, validateAccessToken } from '@/middlewares/auth0.middleware';
+import { addUserDetailsMiddleware, validateAccessToken } from '@middlewares/auth0.middleware';
 
 class UsersDataRoute implements Routes {
     public path = '/users-data';

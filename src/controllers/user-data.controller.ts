@@ -1,16 +1,20 @@
 import { NextFunction, Request, Response } from 'express';
-import { UserData, CreateUserDataRequest } from '@/interfaces/user-data.interface';
-import UserDataService from '@/services/user-data.service';
-import { RequestWithUserDetails } from '@/interfaces/auth.interface';
+import { UserData, CreateUserDataRequest } from '@interfaces/user-data.interface';
+import UserDataService from '@services/user-data.service';
+import { RequestWithUserDetails } from '@interfaces/auth.interface';
 
 class UsersDataController {
     public userDataService = new UserDataService();
 
     public getAllUsersData = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const findAllUsersData: UserData[] = await this.userDataService.findAllUsersData();
+            const findAllUsersData: UserData[] = await this.userDataService.getAllUsersData();
 
-            res.status(200).json({ data: findAllUsersData });
+            if (findAllUsersData.length) {
+                res.status(200).json({ data: findAllUsersData });
+            } else {
+                res.status(404).json({ message: 'No users data found' });
+            }
         } catch (error) {
             next(error);
         }
@@ -27,7 +31,11 @@ class UsersDataController {
                 userId
             );
 
-            res.status(200).json({ data: findUserHistory });
+            if (findUserHistory.length) {
+                res.status(200).json({ data: findUserHistory });
+            } else {
+                res.status(404).json({ message: 'user has no vitals history' });
+            }
         } catch (error) {
             next(error);
         }

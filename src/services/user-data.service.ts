@@ -1,13 +1,13 @@
 import { HttpException } from '@exceptions/HttpException';
-import { CreateUserDataRequest, UserData } from '@/interfaces/user-data.interface';
+import { CreateUserDataRequest, UserData } from '@interfaces/user-data.interface';
 import { isEmpty } from '@utils/util';
-import userDataModel from '@/models/user-data.model';
+import userDataModel from '@models/user-data.model';
 import moment from 'moment';
 
 class UserDataService {
     public userData = userDataModel;
 
-    public async findAllUsersData(): Promise<UserData[]> {
+    public async getAllUsersData(): Promise<UserData[]> {
         const usersData: UserData[] = await this.userData.aggregate([
             {
                 $group: {
