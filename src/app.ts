@@ -44,6 +44,7 @@ class App {
     }
 
     private connectToDatabase() {
+        set('strictQuery', false);
         if (this.env !== 'production') {
             set('debug', true);
         }
@@ -71,9 +72,9 @@ class App {
         const options = {
             swaggerDefinition: {
                 info: {
-                    title: 'REST API',
+                    title: 'COVIDOO API',
                     version: '1.0.0',
-                    description: 'Example docs'
+                    description: 'Users Vitals Data API'
                 }
             },
             apis: ['swagger.yaml']

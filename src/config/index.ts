@@ -9,7 +9,6 @@ export const {
     DB_PORT,
     DB_DATABASE,
     DB_CONNECTION_URL,
-    SECRET_KEY,
     LOG_FORMAT,
     LOG_DIR,
     ORIGIN,

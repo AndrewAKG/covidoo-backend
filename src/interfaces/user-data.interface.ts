@@ -8,6 +8,7 @@ export interface CreateUserDataRequest {
 }
 
 export interface UserData {
+    _id: string;
     userId: string;
     username: string;
     latitude: number;
