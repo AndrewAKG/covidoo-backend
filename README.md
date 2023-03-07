@@ -8,18 +8,18 @@ Deployment is done using [AWS Copilot](https://aws.amazon.com/containers/copilot
 
 This deploys the service to AWS ECS with Fargate mode, and exposes http endpoint for the service via an elastic load balancer, then you can integrate custom http with API Gateway for an https endpoint for the service since there is no custom domain to attach the https listener for the elb.
 
-### API Docs
+## API Docs
 
 run the server on localhost:3000 and navigate to `/api-docs` for swagger doc of the api
 
-## Available Routes
+### Available Routes
 
-### Public routes
+#### Public routes
 
 -   `[GET] /` index route for checking connection and health checks for elb
 -   `[GET] /users-data` returns list of users with their locations and vitals data
 
-### Private routes
+#### Private routes
 
 -   `[GET] /users-data/history` returns list of vitals records for specific user
 -   `[POST] /users-data` post a new vital record for specific user
@@ -43,6 +43,14 @@ It correctly bundles node app in production mode and optimizes the build for the
 
 Runs the app in the production mode.\
 server run using node, thus changes won't be watched
+
+### `make`
+
+builds docker image for the app, make sure docker deamon is up
+
+### `make run`
+
+runs a container based on built image
 
 ## Env File Keys
 
