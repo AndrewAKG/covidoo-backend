@@ -8,6 +8,10 @@ Deployment is done using [AWS Copilot](https://aws.amazon.com/containers/copilot
 
 This deploys the service to AWS ECS with Fargate mode, and exposes http endpoint for the service via an elastic load balancer, then you can integrate custom http with API Gateway for an https endpoint for the service since there is no custom domain to attach the https listener for the elb.
 
+### Example Deployed Link
+
+[https://689bguj7m5.execute-api.eu-west-3.amazonaws.com/test](https://689bguj7m5.execute-api.eu-west-3.amazonaws.com/test)
+
 ## API Docs
 
 run the server on localhost:3000 and navigate to `/api-docs` for swagger doc of the api
