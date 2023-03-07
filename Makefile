@@ -1,7 +1,3 @@
-# app name should be overridden.
-# ex) production-stage: make build APP_NAME=<APP_NAME>
-# ex) development-stage: make build-dev APP_NAME=<APP_NAME>
-
 APP_NAME = covidoo-backend
 APP_NAME := $(APP_NAME)
 
@@ -24,6 +20,6 @@ clean:
 
 # Run the container image
 run:
-	docker run -d -it -p 3000:3000 ${APP_NAME}
+	docker run --env-file .env.development.local -d -it -p 3000:3000 ${APP_NAME}
 
 all: build

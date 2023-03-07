@@ -13,7 +13,10 @@
         "lint": "eslint --ignore-path .gitignore --ext .ts src/",
         "lint:fix": "npm run lint -- --fix",
         "deploy:prod": "npm run build && pm2 start ecosystem.config.js --only prod",
-        "deploy:dev": "pm2 start ecosystem.config.js --only dev"
+        "deploy:dev": "pm2 start ecosystem.config.js --only dev",
+        "monitor": "pm2 monit",
+        "stop:dev": "pm2 stop dev",
+        "stop:prod": "pm2 stop prod"
     },
     "dependencies": {
         "@types/auth0": "^2.35.10",
